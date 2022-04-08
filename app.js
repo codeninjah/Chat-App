@@ -11,7 +11,8 @@ app.get("/messages", (req, res) =>{
 })
 */
 
-app.get("/", (res, req) => {
+app.get("/", (req, res) => {
+    res.render("index")
     console.log("Well done!")
 })
 

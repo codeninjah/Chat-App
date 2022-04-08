@@ -1,4 +1,5 @@
 const express = require("express")
+const { listen } = require("express/lib/application")
 const net = require('net')
 
 const app = express()
@@ -6,7 +7,7 @@ const app = express()
 app.set("view engine", "ejs")
 app.use( express.urlencoded({extended: true}))
 
-const messages = []
+let messages = []
 
 const server = net.createServer(function (socket){
     console.log("Client connected")
@@ -25,12 +26,13 @@ const server = net.createServer(function (socket){
         socket.write("DATA: " + data)
         socket.write("MESSAGES: " + messages)
 
-        //console.log("DATA: " + data)
-        //console.log("MESSAGES: " + messages[0])
-
         return messages
 
     })
+
+    socket.write('SERVER: Hello from SERVER!')
+
+    
 
     socket.on('error', function(error){
         console.log(error)
@@ -41,6 +43,7 @@ const server = net.createServer(function (socket){
 
 app.get("/messages", (req, res) => {
     res.render("messages", {messages: messages})
+    //const jsonData = fs.readFileSync()
 })
 
 app.listen(8002, () => {
