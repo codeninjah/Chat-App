@@ -17,13 +17,16 @@ const server = net.createServer(function (socket){
     socket.on('data', function(data){
         console.log(data)
 
+        messages = []
+
         app.post("/messages", (req, res) => {
-            messages.push(data)
+            messages = []
+            messages.push(data.toString())
         })
 
         messages.push(data)
         
-        socket.write("DATA: " + data)
+        //socket.write("DATA: " + data)
         socket.write("MESSAGES: " + messages)
 
         return messages

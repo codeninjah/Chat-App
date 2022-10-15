@@ -19,18 +19,29 @@
         <script>
             const getMeddelanden = '<%- messages %>'
             var list = document.getElementsByTagName('ol')[0]
+            /*
             setInterval( () => { 
                  console.log("Interval") 
                     for(let message of getMeddelanden) {
 
-                 var node = document.createElement('li')
-                 node.innerText = message
-                 list.appendChild(node)
+                    var node = document.createElement('li')
+                    node.innerText = message
+                    list.appendChild(node)
                   
-                 message
-                 console.log(message) 
-             } 
+                    //message
+                    console.log(message) 
+                } 
              }, 5000)
+             */
+
+             setInterval( () => {
+                var node = document.createElement('li')
+                node.innerText = getMeddelanden
+                list.appendChild(node)
+             }, 5000)
+             
+
+
          </script>   
     </body>
 </html>
